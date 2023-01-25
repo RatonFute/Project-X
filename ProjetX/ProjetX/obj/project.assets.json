@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\hcaroumbin\\.nuget\\packages\\": {},
+    "C:\\Users\\lélé\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hcaroumbin\\Source\\Repos\\Project-X\\ProjetX\\ProjetX\\ProjetX.csproj",
+      "projectUniqueName": "C:\\Users\\lélé\\OneDrive\\Bureau\\Proj Gtech2\\Project-X\\ProjetX\\ProjetX\\ProjetX.csproj",
       "projectName": "ProjetX",
-      "projectPath": "C:\\Users\\hcaroumbin\\Source\\Repos\\Project-X\\ProjetX\\ProjetX\\ProjetX.csproj",
-      "packagesPath": "C:\\Users\\hcaroumbin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hcaroumbin\\Source\\Repos\\Project-X\\ProjetX\\ProjetX\\obj\\",
+      "projectPath": "C:\\Users\\lélé\\OneDrive\\Bureau\\Proj Gtech2\\Project-X\\ProjetX\\ProjetX\\ProjetX.csproj",
+      "packagesPath": "C:\\Users\\lélé\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lélé\\OneDrive\\Bureau\\Proj Gtech2\\Project-X\\ProjetX\\ProjetX\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\hcaroumbin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lélé\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

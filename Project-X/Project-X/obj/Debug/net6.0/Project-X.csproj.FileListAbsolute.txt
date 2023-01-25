@@ -1,0 +1,15 @@
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\bin\Debug\net6.0\Project-X.exe
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\bin\Debug\net6.0\Project-X.deps.json
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\bin\Debug\net6.0\Project-X.runtimeconfig.json
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\bin\Debug\net6.0\Project-X.dll
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\bin\Debug\net6.0\Project-X.pdb
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.csproj.AssemblyReference.cache
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.AssemblyInfoInputs.cache
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.AssemblyInfo.cs
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.csproj.CoreCompileInputs.cache
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.dll
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\refint\Project-X.dll
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.pdb
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\Project-X.genruntimeconfig.cache
+C:\Users\lélé\OneDrive\Bureau\Proj Gtech2\Project-X\Project-X\Project-X\obj\Debug\net6.0\ref\Project-X.dll
