@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ProjetX",
+    "\\ProjetX\\ProjetX"
   ],
-  "SelectedNode": "\\C:\\Users\\hcaroumbin\\Source\\Repos\\Project-X",
+  "SelectedNode": "\\ProjetX\\ProjetX\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
