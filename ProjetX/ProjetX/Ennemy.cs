@@ -9,17 +9,26 @@ namespace ProjetX
 {
     internal class Ennemy
     {
-        public float currentHp;
-        public float maxHp;
-        public float currentAtk;
-        public float atk = 10;
-        public float dmgOutput;
-        public float speed;
-        public int type;
-        public int givenXp;
-        
-        public int AtkBuffDuration;
-        public float AtkBuff;
+        private float currentHp;
+        private float maxHp = 100;
+        private float currentAtk;
+        private float atk = 10;
+        private float dmgOutput;
+        private float speed;
+        private int type;
+        private int givenXp;
+
+        private int AtkBuffDuration;
+        private float AtkBuff;
+
+        public float CurrentHp { get => currentHp; set => currentHp = value; }
+        public float MaxHp { get => maxHp; set => maxHp = value; }
+        public float CurrentAtk { get => currentAtk; set => currentAtk = value; }
+        public float Speed { get => speed; set => speed = value; }
+        public int Type { get => type; set => type = value; }
+        public int GivenXp { get => givenXp; set => givenXp = value; }
+        public float Atk { get => atk; set => atk = value; }
+
         public float ennemyAction(float playerHp, int playerType)
         {
             
@@ -27,7 +36,10 @@ namespace ProjetX
             if ((type == 1 && playerType == 2) || (type == 2 && playerType == 3) || (type == 3 && playerType == 1)) { dmgOutput = currentAtk * 0.5f; givenXp = 20; }
             else if ((type == 2 && playerType == 1) || (type == 3 && playerType == 2) || (type == 1 && playerType == 3)) { dmgOutput = currentAtk * 2f; givenXp = 40; }
             else { dmgOutput = currentAtk;givenXp = 30; }
-
+            Console.Write("player hp ");
+            Console.Write(playerHp);
+            Console.Write(" - ");
+            Console.WriteLine(dmgOutput);
             playerHp = playerHp - dmgOutput;
             return playerHp;
         }
@@ -36,7 +48,7 @@ namespace ProjetX
 
         public void displayHp()
         {
-            Console.Write("hp ");
+            Console.Write("Ennemy hp ");
             Console.Write(currentHp);
             Console.Write("/");
             Console.WriteLine(maxHp);

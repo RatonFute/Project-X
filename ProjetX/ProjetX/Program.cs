@@ -18,20 +18,24 @@ while (isRunning)
     Player wui = new Player();
     wui.CurrentHp = wui.MaxHp;
     wui.CurrentAtk = wui.Atk;
+    wui.Speed = 60;
     wui.Type = feu;
 
     Ennemy gromp = new Ennemy();
-    gromp.currentHp = gromp.maxHp;
-    gromp.type = feu;
+    gromp.CurrentHp = gromp.MaxHp;
+    gromp.Speed = 50;
+    gromp.Type = feu;
 
 
     key = Console.ReadKey(true);
     if (key.Key == ConsoleKey.F)
     {
         wui.CurrentHp = wui.MaxHp;
-        gromp.currentHp = gromp.maxHp;
-        wui.CurrentAtk = wui.atk;
-        gromp.currentAtk = gromp.atk;
+        gromp.CurrentHp = gromp.MaxHp;
+        wui.CurrentAtk = wui.Atk;
+        gromp.CurrentAtk = gromp.Atk;
+        wui.displayHp();
+        gromp.displayHp();
         isFighting = true;
 
     }
@@ -39,13 +43,18 @@ while (isRunning)
     
     Console.WriteLine(isFighting);
     while(isFighting){
-        
-
-        
-    }
-
-
-    
+        if((wui.Speed - gromp.Speed) <= 0)
+        {
+            gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type);
+            wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type);
+      
+        }
+        else
+        {
+            wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type);
+            gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type);
+        }        
+    }    
 }
 
 
