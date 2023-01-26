@@ -12,22 +12,22 @@ namespace ProjetX
         private float currentHp;
         private float maxHp = 100;
         private float currentAtk;
-        private float atk = 10;
+        private float atk = 15;
         private float dmgOutput;
         private float speed;
         private int type;
         private int givenXp;
         private bool turnEnd;
         private bool dead = false;
-       
 
+        public int LVL { get; set; }
         public float CurrentHp { get => currentHp; set => currentHp = value; }
         public float MaxHp { get => maxHp; set => maxHp = value; }
         public float CurrentAtk { get => currentAtk; set => currentAtk = value; }
         public float Speed { get => speed; set => speed = value; }
         public int Type { get => type; set => type = value; }
         public int GivenXp { get => givenXp; set => givenXp = value; }
-        public float Atk { get => atk; set => atk = value; }
+        public float Atk { get => atk = atk + (LVL * 1.5f); set => atk = value; }
         public bool TurnEnd { get => turnEnd; set => turnEnd = value; }
         public bool PlayerDead { get => dead; set => dead = value; }
 

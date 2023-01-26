@@ -12,6 +12,8 @@ namespace ProjetX
         private float currentHp;
         private float maxHp = 100;
         private float heal = 30;
+        private int critRate = 50;
+        private float critDmg = 1.5f;
         private float currentAtk;
         private float atk = 10;
         private float magicAtk = 5;
@@ -19,14 +21,13 @@ namespace ProjetX
         private float physicAtk = 5;
         private float currentPhysicAtk;
         private float dmgOutput;
-        private float speed = 50;
+        private float speed;
         private int type;
         private int atkBuffDuration;
         private float atkBuff = 10;
         private bool buffed;
-        private bool turnEnd = true;
         private bool dead = false;
-        List<string> inventory = new List<string>() { "pot", "gem" };
+        List<string> inventory = new List<string>() { "pot", "gem", "gem+" };
         List<string> ability = new List<string>() { "sword", "fireball" };
 
         public float CurrentHp
@@ -43,16 +44,17 @@ namespace ProjetX
         public List<string> Inventory { get => inventory; set => inventory = value; }
         public float MaxHp { get => maxHp; }
         public int Type { get => type; set => type = value; }
+        public float Atk { get => atk = atk + (LVL * 1.5f);  set => atk = value; }
+        public float MagicAtk { get => magicAtk = magicAtk + (LVL * 1.1f); set => magicAtk = value; }
+        public float PhysicAtk { get => physicAtk; set => physicAtk = value; }
         public float CurrentAtk { get => currentAtk; set => currentAtk = value; }
-        public float Atk { get => atk = atk + (LVL * 1.5f); private set => atk = value; }
-        public float Speed { get => speed; set => speed = value; }
-        private float AtkBuff { get => atkBuff = atkBuff + (LVL * 1.5f); }
-        public bool TurnEnd { get => turnEnd; set => turnEnd = value; }
-        public float MagicAtk { get => magicAtk; set => magicAtk = value; }
         public float CurrentMagicAtk { get => currentMagicAtk; set => currentMagicAtk = value; }
         public float CurrentPhysicAtk { get => currentPhysicAtk; set => currentPhysicAtk = value; }
-        public float PhysicAtk { get => physicAtk; set => physicAtk = value; }
+        public float Speed { get => speed; set => speed = value; }
+        private float AtkBuff { get => atkBuff = atkBuff + (LVL * 1.2f); }        
         public bool Dead { get => dead; set => dead = value; }
+        public int CritRate { get => critRate; set => critRate = value; }
+        public float CritDmg { get => critDmg; set => critDmg = value; }
 
         public float PlayerAction(float ennemyCurrentHp, int ennemyType)
         {
@@ -70,9 +72,9 @@ namespace ProjetX
                         Console.Write("- ");
                         Console.WriteLine(element);
                     }
-                    
+                    int i = 0;
                     string opta = Console.ReadLine();
-                    if (opta == "pot")
+                    if (opta == inventory[i])
                     {
                         Console.WriteLine("-----------potion choosed");
                         Console.WriteLine("hp healed");
@@ -81,9 +83,10 @@ namespace ProjetX
                         Console.Write(" + ");
                         Console.Write(heal);
                         CurrentHp = CurrentHp + heal;
-                        TurnEnd = true;
+                        
                     }
-                    else if(opta == "gem")
+                    i = i + 1;
+                    if (opta == inventory[i])
                     {
                         Console.WriteLine("----------gem choosed");
                         atkBuffDuration = 2;
@@ -92,9 +95,21 @@ namespace ProjetX
                         Console.WriteLine("Attack increased !");
                         Console.Write("atk is now ");
                         Console.WriteLine(CurrentAtk);
-                        TurnEnd = true;
+                        
                     }
-                    else { TurnEnd = false; }
+                    i = i + 1;
+                    if (opta == inventory[i])
+                    {
+                        Console.WriteLine("----------gem+ choosed");
+                        atkBuffDuration = 1;
+                        buffed = true;
+                        CurrentAtk = CurrentAtk + (AtkBuff * 5);
+                        Console.WriteLine("Attack increased !");
+                        Console.Write("atk is now ");
+                        Console.WriteLine(CurrentAtk);
+                        
+                    }
+                    
 
                     break;
                 case "atk":
@@ -123,26 +138,31 @@ namespace ProjetX
                         Console.Write("- ");
                         Console.WriteLine(element);
                     }
-
+                    int j = 0;
                     string optb = Console.ReadLine();
-                    if (optb == "sword")
+                    if (optb == ability[j])
                     {
-                        dmgOutput = dmgOutput + (CurrentPhysicAtk / 2);
+                        dmgOutput = dmgOutput + CurrentPhysicAtk;
                         Console.WriteLine("You use your sword to slice your ennemies !");
-                                              
-                        TurnEnd = true;
+                        
                     }
-                    else if (optb == "fireball")
+                    j = j + 1;
+                    if (optb == ability[j])
                     {
-                        dmgOutput = dmgOutput + (CurrentMagicAtk / 5);
+                        dmgOutput = dmgOutput + CurrentMagicAtk;
                         Console.WriteLine("You throw a fire ball to your ennemies !");
-                        TurnEnd = true;
+                     
                     }
-                    else { TurnEnd = false; }
+                    
 
                     if ((type == 1 && ennemyType == 2) || (type == 2 && ennemyType == 3) || (type == 3 && ennemyType == 1)) { dmgOutput = dmgOutput * 0.5f; }
                     else if ((type == 2 && ennemyType == 1) || (type == 3 && ennemyType == 2) || (type == 1 && ennemyType == 3)) { dmgOutput = dmgOutput * 2f; }
-
+                    Random rand = new Random();
+                    if(rand.Next(101) <= CritRate) 
+                    {
+                        Console.WriteLine("your crit !");
+                        dmgOutput = dmgOutput * CritDmg;
+                    }
                     Console.Write("ennemy hp ");
                     Console.Write(ennemyCurrentHp);
                     Console.Write(" - ");
