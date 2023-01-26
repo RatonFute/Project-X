@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ProjetX",
+    "\\ProjetX\\ProjetX"
   ],
+<<<<<<< HEAD
   "SelectedNode": "\\ProjetX.sln",
+=======
+  "SelectedNode": "\\ProjetX\\ProjetX\\Program.cs",
+>>>>>>> origin/main
   "PreviewInSolutionExplorer": false
 }
