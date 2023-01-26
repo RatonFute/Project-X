@@ -17,9 +17,9 @@ namespace ProjetX
         private float speed;
         private int type;
         private int givenXp;
-
-        private int AtkBuffDuration;
-        private float AtkBuff;
+        private bool turnEnd;
+        private bool dead = false;
+       
 
         public float CurrentHp { get => currentHp; set => currentHp = value; }
         public float MaxHp { get => maxHp; set => maxHp = value; }
@@ -28,6 +28,8 @@ namespace ProjetX
         public int Type { get => type; set => type = value; }
         public int GivenXp { get => givenXp; set => givenXp = value; }
         public float Atk { get => atk; set => atk = value; }
+        public bool TurnEnd { get => turnEnd; set => turnEnd = value; }
+        public bool PlayerDead { get => dead; set => dead = value; }
 
         public float ennemyAction(float playerHp, int playerType)
         {
@@ -41,6 +43,11 @@ namespace ProjetX
             Console.Write(" - ");
             Console.WriteLine(dmgOutput);
             playerHp = playerHp - dmgOutput;
+            if (playerHp <= 0) { playerHp = 0; PlayerDead = true; }
+            else { PlayerDead = false; }
+            Console.Write("player hp ");
+            Console.WriteLine(playerHp);
+            TurnEnd = true;
             return playerHp;
         }
 

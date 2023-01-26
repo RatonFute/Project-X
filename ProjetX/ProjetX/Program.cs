@@ -31,9 +31,11 @@ while (isRunning)
     if (key.Key == ConsoleKey.F)
     {
         wui.CurrentHp = wui.MaxHp;
-        gromp.CurrentHp = gromp.MaxHp;
         wui.CurrentAtk = wui.Atk;
+        wui.CurrentMagicAtk = wui.MagicAtk;
+        wui.CurrentPhysicAtk = wui.PhysicAtk;
         gromp.CurrentAtk = gromp.Atk;
+        gromp.CurrentHp = gromp.MaxHp;
         wui.displayHp();
         gromp.displayHp();
         isFighting = true;
@@ -45,14 +47,29 @@ while (isRunning)
     while(isFighting){
         if((wui.Speed - gromp.Speed) <= 0)
         {
-            gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type);
-            wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type);
-      
+
+            if (wui.TurnEnd) { wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type); }
+            if (!gromp.PlayerDead) { gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type); }
+            else
+            {
+                Console.WriteLine("player died");
+                isFighting = false;
+            }
+
+
+
         }
         else
         {
-            wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type);
             gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type);
+            if (wui.Dead)
+            {
+                Console.WriteLine("ennemy died");
+                isFighting = false;
+            }
+            else if (wui.TurnEnd) { wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type); }
+            
+            
         }        
     }    
 }
