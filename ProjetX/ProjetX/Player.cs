@@ -10,20 +10,25 @@ namespace ProjetX
     public class Player
     {
         private float currentHp;
-        private float maxHp = 100;
-        private float heal = 30;
-        private int critRate = 50;
-        private float critDmg = 1.5f;
+        private float maxHp;
+        private float mana;
+        private float currentMana;
+        private float heal;
+        private int critRate;
+        private float critDmg;
         private float currentAtk;
-        private float atk = 10;
-        private float magicAtk = 5;
+        private float atk;
+        private float magicAtk;
         private float currentMagicAtk;
-        private float physicAtk = 5;
+        private float physicAtk;
         private float currentPhysicAtk;
         private float dmgOutput;
         private float speed;
         private int type;
         private int atkBuffDuration;
+        int feu = 1;
+        int eau = 2;
+        int plant = 3;
         private float atkBuff = 10;
         private bool buffed;
         private bool dead = false;
@@ -33,16 +38,12 @@ namespace ProjetX
         public float CurrentHp
         {
             get => currentHp;
-            set
-            {
-                currentHp = value;
-                if (currentHp < 0) { currentHp = 0; }
-            }
+            set => currentHp = value;
         }
         public int XP { get; set; }
         public int LVL { get; set; }
         public List<string> Inventory { get => inventory; set => inventory = value; }
-        public float MaxHp { get => maxHp; }
+        public float MaxHp { get => maxHp; set => maxHp = value; }
         public int Type { get => type; set => type = value; }
         public float Atk { get => atk = atk + (LVL * 1.5f);  set => atk = value; }
         public float MagicAtk { get => magicAtk = magicAtk + (LVL * 1.1f); set => magicAtk = value; }
@@ -56,7 +57,68 @@ namespace ProjetX
         public int CritRate { get => critRate; set => critRate = value; }
         public float CritDmg { get => critDmg; set => critDmg = value; }
 
-        public float PlayerAction(float ennemyCurrentHp, int ennemyType)
+
+        public void initWarrior()
+        {
+            MaxHp = 120;
+            CurrentHp = MaxHp;
+            Atk = 20;
+            MagicAtk = 1;
+            PhysicAtk = 10;
+            CurrentAtk = Atk;
+            CurrentMagicAtk = MagicAtk;
+            CurrentPhysicAtk = PhysicAtk;
+            Speed = 30;
+            Type = feu;
+            Console.WriteLine("you chose warrior");
+        }
+        public void initWizard()
+        {
+            MaxHp = 70;
+            CurrentHp = MaxHp;
+            Atk = 5;
+            MagicAtk = 15;
+            PhysicAtk = 2;
+            CurrentAtk = Atk;
+            CurrentMagicAtk = MagicAtk;
+            CurrentPhysicAtk = PhysicAtk;
+            Speed = 60;
+            Type = eau;
+            Console.WriteLine("you chose wizard");
+        }
+        public void initKnight()
+        {
+            MaxHp = 100;
+            CurrentHp = MaxHp;
+            Atk = 15;
+            MagicAtk = 8;
+            PhysicAtk = 10;
+            CurrentAtk = Atk;
+            CurrentMagicAtk = MagicAtk;
+            CurrentPhysicAtk = PhysicAtk;
+            Speed = 50;
+            Type = plant;
+            Console.WriteLine("you chose knight");
+        }
+
+        public void initPlayer(string _playerClass)
+        {
+            if (_playerClass == "warrior")
+            {
+                initWarrior();
+            }
+            else if (_playerClass == "knight")
+            {
+                initKnight();
+            }
+            else if (_playerClass == "wizard")
+            {
+               initWizard();
+            }
+            
+        }
+
+        public void PlayerAction(int ennemyType)
         {
             Console.WriteLine("You are playing");
             Console.WriteLine("choose an action:");
@@ -160,25 +222,13 @@ namespace ProjetX
                     Random rand = new Random();
                     if(rand.Next(101) <= CritRate) 
                     {
-                        Console.WriteLine("your crit !");
+                        Console.WriteLine("you did a critical hit !");
                         dmgOutput = dmgOutput * CritDmg;
                     }
-                    Console.Write("ennemy hp ");
-                    Console.Write(ennemyCurrentHp);
-                    Console.Write(" - ");
-                    Console.WriteLine(dmgOutput);
-                    ennemyCurrentHp = ennemyCurrentHp - dmgOutput;
-                    if (ennemyCurrentHp <= 0) { ennemyCurrentHp = 0; Dead = true; }
-                    else { Dead = false; }
-                    Console.Write("ennemy hp ");
-                    Console.WriteLine(ennemyCurrentHp);
+                    
                     break;
 
-            }
-
-           
-
-            return ennemyCurrentHp;
+            }        
 
         }
 

@@ -1,99 +1,131 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ProjetX;
 using System.Runtime.CompilerServices;
-
-Console.WriteLine("Hello, World!");
+using static System.Console;
+WriteLine("Hello, World!");
 ConsoleKeyInfo key;
-int feu = 1;
-int eau = 2;
-int plant = 3;
+string[] playerClass = new string[] { "warrior", "knight", "wizard" };
+string[] ennemyClass = new string[] { "ennemy", "cheval" };
 bool isRunning = true;
 bool isFighting = false;
-Console.WriteLine("----------------------------------");
-Player wui = new Player();
-Ennemy gromp = new Ennemy();
-void initPlayer() {
-    
-    wui.CurrentHp = wui.MaxHp;
-    wui.Atk = 10;
-    wui.MagicAtk = 2;
-    wui.PhysicAtk = 5;
-    wui.CurrentAtk = wui.Atk;
-    wui.CurrentMagicAtk = wui.MagicAtk;
-    wui.CurrentPhysicAtk = wui.PhysicAtk;
-    wui.Speed = 60;
-    wui.Type = feu;
-}
-void initGromp()
-{
-    
-    gromp.Atk = 15;
-    gromp.CurrentAtk = gromp.Atk;
-    gromp.CurrentHp = gromp.MaxHp;
-    gromp.Speed = 50;
-    gromp.Type = feu;
-}
+WriteLine("----------------------------------");
+Player player = new Player();
+Ennemy ennemy = new Ennemy();
+
+
+
+//void displayHp(string entity)
+//{
+//    Write("Player hp ");
+//    Write(CurrentHp);
+//    Write("/");
+//    WriteLine(MaxHp);
+//}
+
+
+
 
 while (isRunning)
 {
 
-    initPlayer();
-    initGromp();
-
-    
-
-
-    key = Console.ReadKey(true);
+    key = ReadKey(true);
     if (key.Key == ConsoleKey.F)
     {
-       
-        wui.displayHp();
-        gromp.displayHp();
+        WriteLine("choose player class :");
+        foreach(string element in playerClass)
+        {
+            Write("- ");
+            WriteLine(element);
+        }
+        string choseClass = ReadLine();
+        player.initPlayer(choseClass);
+        ennemy.initEnnemy();
+        player.displayHp();     
+        ennemy.displayHp();     
         isFighting = true;
 
     }
-    
-    
-    Console.WriteLine(isFighting);
-    while(isFighting){
-        if((wui.Speed - gromp.Speed) <= 0)
-        {
 
-            if (!wui.Dead) { wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type); }
-            else 
+
+    if (key.Key == ConsoleKey.G)
+    {
+        player.initPlayer("Knight");
+        ennemy.initEnnemy();
+        player.displayHp();
+        ennemy.displayHp();
+        isFighting = true;
+
+    }
+
+
+    WriteLine(isFighting);
+    while(isFighting){
+
+
+        if(player.Speed - ennemy.Speed <= 0)
+        {
+            if (!ennemy.Dead) { ennemy.ennemyAction(player.Type); PlayerTakeDmg(); }
+            else
             {
-                Console.WriteLine("Ennemy died");
+                WriteLine("Ennemy died");
                 isFighting = false;
                 break;
             }
-            if (!gromp.PlayerDead) { gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type); }
+            if (!player.Dead) { player.PlayerAction(ennemy.Type); ennemyTakeDmg(); }
             else
             {
-                Console.WriteLine("Player died");
+                WriteLine("Player died");
+                isFighting = false;
+                break;
+            }
+        } 
+        else
+        {
+            if (!player.Dead) { player.PlayerAction(ennemy.Type); ennemyTakeDmg(); }
+            else
+            {
+                WriteLine("Player died");
+                isFighting = false;
+                break;
+            }
+            if (!ennemy.Dead) { ennemy.ennemyAction(player.Type); PlayerTakeDmg(); }
+            else
+            {
+                WriteLine("Ennemy died");
                 isFighting = false;
                 break;
             }
         }
-        else
-        {
-            if (!gromp.PlayerDead) { gromp.CurrentHp = wui.PlayerAction(gromp.CurrentHp, gromp.Type); }
-            else
-            {
-                Console.WriteLine("Player died");
-                isFighting = false;
-                break;
-            }
-            if (!wui.Dead) { wui.CurrentHp = gromp.ennemyAction(wui.CurrentHp, wui.Type); }
-            else
-            {
-                Console.WriteLine("Ennemy died");
-                isFighting = false;
-                break;
-            }
-        }        
+        
+
+
+        
     }    
 }
 
+void PlayerTakeDmg()
+{
+    Write("player hp ");
+    Write(player.CurrentHp);
+    Write(" - ");
+    WriteLine(ennemy.DmgOutput);
+    player.CurrentHp = player.CurrentHp - ennemy.DmgOutput;
+    if (player.CurrentHp <= 0) { player.CurrentHp = 0; player.Dead = true; }
+    else { player.Dead = false; }
+    Write("player hp ");
+    WriteLine(player.CurrentHp);
+}
 
-
+void ennemyTakeDmg()
+{
+    Write("ennemy hp ");
+    Write(ennemy.CurrentHp);
+    Write(" - ");
+    WriteLine(ennemy.DmgOutput);
+    ennemy.CurrentHp = ennemy.CurrentHp - ennemy.DmgOutput;
+    if (ennemy.CurrentHp <= 0) { ennemy.CurrentHp = 0; ennemy.Dead = true; }
+    else { ennemy.Dead = false; }
+    Write("ennemy hp ");
+    WriteLine(ennemy.CurrentHp);
+}
 
